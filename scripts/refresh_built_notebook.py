@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
     ROOT / "examples" / "stickyland-demo.ipynb",
     ROOT / "examples" / "stickyland-classroom.ipynb",
+    ROOT / "examples" / "stickyland-analysis.ipynb",
 ]
 INDEX = ROOT / "_output" / "api" / "contents" / "all.json"
 

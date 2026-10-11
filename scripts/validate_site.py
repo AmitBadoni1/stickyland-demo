@@ -67,6 +67,7 @@ activity_notebook = json.loads(
     require(OUTPUT / "files" / "stickyland-demo.ipynb").read_text(encoding="utf-8")
 )
 require(OUTPUT / "files" / "stickyland-classroom.ipynb")
+require(OUTPUT / "files" / "stickyland-analysis.ipynb")
 if len(activity_notebook.get("cells", [])) < 30:
     raise SystemExit("The classroom activity notebook is unexpectedly short")
 

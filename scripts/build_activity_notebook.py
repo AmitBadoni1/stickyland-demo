@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS = [
     ROOT / "examples" / "stickyland-demo.ipynb",
     ROOT / "examples" / "stickyland-classroom.ipynb",
+    ROOT / "examples" / "stickyland-analysis.ipynb",
 ]
 
 

@@ -32,7 +32,7 @@ You can try StickyLand directly in your browser without installing anything:
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
 | [![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/a7fca1d0a2d62c2b49f60c0217dffbd0fe404471/lite-badge-launch-small.svg)](https://amitbadoni1.github.io/stickyland-demo/) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xiaohk/stickyland/master?urlpath=lab/tree/examples/example-adult.ipynb) |
 
-The [classroom notebook](https://amitbadoni1.github.io/stickyland-demo/lab/index.html?path=stickyland-classroom.ipynb)
+The [classroom notebook](https://amitbadoni1.github.io/stickyland-demo/lab/index.html?path=stickyland-analysis.ipynb)
 is a 32-cell incident-response analysis workspace. The
 linear team may freely write analysis code, while the StickyLand team can keep
 the distributed controls and answer views together. Facilitators can use the
