@@ -75,8 +75,15 @@ activity_tags = {
     for cell in activity_notebook["cells"]
     for tag in cell.get("metadata", {}).get("tags", [])
 }
-for required_tag in ("activity-control", "activity-slow-audit", "activity-answer", "validator"):
+for required_tag in ("scenario-control", "analysis-audit", "analysis-output"):
     if required_tag not in activity_tags:
-        raise SystemExit(f"The classroom activity is missing tag: {required_tag}")
+        raise SystemExit(f"The analysis notebook is missing tag: {required_tag}")
+
+notebook_text = json.dumps(activity_notebook).lower()
+for forbidden_text in ("submit_answer", "pass\" if passed", "objective submission"):
+    if forbidden_text in notebook_text:
+        raise SystemExit(
+            f"The analysis notebook still contains validation UI: {forbidden_text}"
+        )
 
 print("Generated site is internally consistent.")

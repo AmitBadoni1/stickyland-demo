@@ -1,4 +1,4 @@
-"""Generate the classroom StickyLand incident-response notebook."""
+"""Generate the StickyLand incident-response analysis notebook."""
 
 from __future__ import annotations
 
@@ -47,16 +47,9 @@ cells = [
         """
         # Network Operations Incident Response
 
-        You are supporting a fictional multi-region product during a traffic incident. Your task is to configure the active scenario and report a precise incident answer to the facilitator.
+        This notebook explores a fictional multi-region product during a traffic incident. Use the controls below to inspect different regions, time windows, and visitor thresholds.
 
-        Everything runs locally in the browser. The data is deterministic, and every answer can be verified objectively.
-
-        **Rules for the classroom activity**
-
-        - You may inspect, edit, add, or rewrite analysis code.
-        - Do not edit the source-data cell or the `submit_answer` validator.
-        - The facilitator will announce `region`, `days`, and `visitor_threshold` values.
-        - A submission is complete only when the validator displays **PASS**.
+        Everything runs locally in the browser. The deterministic data makes it easy to compare results across different analytical approaches.
         """
     ),
     code(
@@ -237,7 +230,7 @@ cells = [
             f"high-traffic threshold {visitor_threshold}"
         )
         """,
-        tags=["activity-control"],
+        tags=["scenario-control"],
     ),
     markdown(
         """
@@ -315,7 +308,7 @@ cells = [
         print(f"Spectral stability index: {stability_index:.3f}")
         print(f"Robustness audit completed in {audit_seconds:.2f} seconds")
         """,
-        tags=["activity-slow-audit"],
+        tags=["analysis-audit"],
     ),
     code(
         """
@@ -352,7 +345,7 @@ cells = [
         )
         executive_totals
         """,
-        tags=["activity-answer", "answer-totals"],
+        tags=["analysis-output", "answer-totals"],
     ),
     markdown(
         """
@@ -407,7 +400,7 @@ cells = [
         )
         alert_summary
         """,
-        tags=["activity-answer", "answer-alerts"],
+        tags=["analysis-output", "answer-alerts"],
     ),
     code(
         """
@@ -453,7 +446,7 @@ cells = [
         )
         change_summary
         """,
-        tags=["activity-answer", "answer-change"],
+        tags=["analysis-output", "answer-change"],
     ),
     code(
         """
@@ -494,7 +487,7 @@ cells = [
         )
         peak_summary
         """,
-        tags=["activity-answer", "answer-peak"],
+        tags=["analysis-output", "answer-peak"],
     ),
     markdown(
         """
@@ -513,78 +506,6 @@ cells = [
         appendix[
             ["day", "signup_gap", "latency_per_visitor", "tickets_per_1000"]
         ].round(2).tail(10)
-        """
-    ),
-    markdown(
-        """
-        ## 10. Objective submission
-
-        Submit a dictionary containing all six requested fields:
-
-        - `total_visitors`
-        - `total_signups`
-        - `conversion` as the displayed one-decimal percentage
-        - `high_traffic_days`
-        - `peak_date` as `YYYY-MM-DD`
-        - `largest_drop` as a signed integer
-
-        The validator intentionally reports only **PASS** or **INCORRECT**.
-        """
-    ),
-    code(
-        """
-        def submit_answer(answer):
-            required_keys = {
-                "total_visitors",
-                "total_signups",
-                "conversion",
-                "high_traffic_days",
-                "peak_date",
-                "largest_drop",
-            }
-            if not isinstance(answer, dict) or set(answer) != required_keys:
-                print("INCORRECT")
-                return False
-
-            expected_changes = recent.visitors.diff()
-            expected_drop_index = expected_changes.idxmin()
-            expected_peak_index = recent.visitors.idxmax()
-            expected = {
-                "total_visitors": int(recent.visitors.sum()),
-                "total_signups": int(recent.signups.sum()),
-                "conversion": displayed_rate(recent),
-                "high_traffic_days": int(
-                    recent.visitors.ge(visitor_threshold).sum()
-                ),
-                "peak_date": date_text(recent.loc[expected_peak_index, "day"]),
-                "largest_drop": int(expected_changes.loc[expected_drop_index]),
-            }
-            passed = answer == expected
-            print("PASS" if passed else "INCORRECT")
-            return passed
-        """,
-        tags=["validator", "do-not-edit"],
-    ),
-    code(
-        """
-        answer = {
-            "total_visitors": None,
-            "total_signups": None,
-            "conversion": None,
-            "high_traffic_days": None,
-            "peak_date": None,
-            "largest_drop": None,
-        }
-
-        submit_answer(answer)
-        """,
-        tags=["submission"],
-    ),
-    markdown(
-        """
-        ## Finish
-
-        Show the facilitator the visible **PASS** result. If another incident round is announced, update the control values and repeat the investigation using any strategy you choose.
         """
     ),
 ]
