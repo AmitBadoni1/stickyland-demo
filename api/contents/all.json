@@ -34,11 +34,11 @@
       "format": null,
       "hash": null,
       "hash_algorithm": null,
-      "last_modified": "2026-10-11T23:03:17.411164Z",
+      "last_modified": "2026-10-11T23:24:08.164310Z",
       "mimetype": null,
       "name": "stickyland-classroom.ipynb",
       "path": "stickyland-classroom.ipynb",
-      "size": 23638,
+      "size": 20451,
       "type": "notebook",
       "writable": true
     },
@@ -48,11 +48,11 @@
       "format": null,
       "hash": null,
       "hash_algorithm": null,
-      "last_modified": "2026-10-11T23:03:17.408637Z",
+      "last_modified": "2026-10-11T23:24:08.163311Z",
       "mimetype": null,
       "name": "stickyland-demo.ipynb",
       "path": "stickyland-demo.ipynb",
-      "size": 23638,
+      "size": 20451,
       "type": "notebook",
       "writable": true
     }
