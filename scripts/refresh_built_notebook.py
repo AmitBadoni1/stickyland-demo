@@ -9,24 +9,37 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "examples" / "stickyland-demo.ipynb"
-TARGET = ROOT / "_output" / "files" / SOURCE.name
+SOURCES = [
+    ROOT / "examples" / "stickyland-demo.ipynb",
+    ROOT / "examples" / "stickyland-classroom.ipynb",
+]
 INDEX = ROOT / "_output" / "api" / "contents" / "all.json"
 
-if not SOURCE.is_file() or not TARGET.parent.is_dir() or not INDEX.is_file():
+if not all(source.is_file() for source in SOURCES) or not INDEX.is_file():
     raise SystemExit("The source notebook or generated JupyterLite tree is missing")
 
-shutil.copy2(SOURCE, TARGET)
 index = json.loads(INDEX.read_text(encoding="utf-8"))
-entry = next(
-    (item for item in index["content"] if item.get("path") == SOURCE.name),
-    None,
+demo_entry = next(
+    item for item in index["content"] if item.get("path") == "stickyland-demo.ipynb"
 )
-if entry is None:
-    raise SystemExit(f"{SOURCE.name} is not indexed by the generated site")
 
-modified = datetime.fromtimestamp(TARGET.stat().st_mtime, tz=timezone.utc)
-entry["size"] = TARGET.stat().st_size
-entry["last_modified"] = modified.isoformat().replace("+00:00", "Z")
+for source in SOURCES:
+    target = ROOT / "_output" / "files" / source.name
+    shutil.copy2(source, target)
+    entry = next(
+        (item for item in index["content"] if item.get("path") == source.name),
+        None,
+    )
+    if entry is None:
+        entry = dict(demo_entry)
+        entry["name"] = source.name
+        entry["path"] = source.name
+        index["content"].append(entry)
+
+    modified = datetime.fromtimestamp(target.stat().st_mtime, tz=timezone.utc)
+    entry["size"] = target.stat().st_size
+    entry["last_modified"] = modified.isoformat().replace("+00:00", "Z")
+    print(f"Refreshed {target.relative_to(ROOT)} ({entry['size']:,} bytes)")
+
+index["content"].sort(key=lambda item: item["path"])
 INDEX.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
-print(f"Refreshed {TARGET.relative_to(ROOT)} ({entry['size']:,} bytes)")

@@ -8,7 +8,10 @@ from textwrap import dedent
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "examples" / "stickyland-demo.ipynb"
+OUTPUTS = [
+    ROOT / "examples" / "stickyland-demo.ipynb",
+    ROOT / "examples" / "stickyland-classroom.ipynb",
+]
 
 
 def source(text: str) -> list[str]:
@@ -608,5 +611,6 @@ notebook = {
     "nbformat_minor": 5,
 }
 
-OUTPUT.write_text(json.dumps(notebook, indent=1) + "\n", encoding="utf-8")
-print(f"Wrote {OUTPUT} with {len(cells)} cells")
+for output in OUTPUTS:
+    output.write_text(json.dumps(notebook, indent=1) + "\n", encoding="utf-8")
+    print(f"Wrote {output} with {len(cells)} cells")

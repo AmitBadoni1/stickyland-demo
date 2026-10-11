@@ -4,7 +4,7 @@ This guide is for the facilitator. It is not copied into the JupyterLite file br
 
 ## Ten-minute format
 
-1. Give both teams the same fresh `stickyland-demo.ipynb` notebook.
+1. Give both teams the same fresh `stickyland-classroom.ipynb` notebook.
 2. Team Sticky may use StickyLand. Team Linear may inspect, add, edit, or rewrite analysis code, but may not edit the source-data cell or `submit_answer` validator.
 3. Allow two minutes of preparation without revealing the scenarios.
 4. Reveal one scenario at a time. Award 3 points to the first team showing `PASS` and 1 point to the second team showing `PASS`.
