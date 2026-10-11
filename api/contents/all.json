@@ -1,0 +1,57 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2026-10-11T21:44:51.583555Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-10-11T20:58:10.672951Z",
+      "mimetype": null,
+      "name": "example-adult.ipynb",
+      "path": "example-adult.ipynb",
+      "size": 1799703,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-10-11T21:44:51.589278Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-10-11T20:58:10.689379Z",
+      "mimetype": null,
+      "name": "example-ml.ipynb",
+      "path": "example-ml.ipynb",
+      "size": 930369,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2026-10-11T21:44:51.594784Z",
+      "format": null,
+      "hash": null,
+      "hash_algorithm": null,
+      "last_modified": "2026-10-11T21:27:43.811038Z",
+      "mimetype": null,
+      "name": "stickyland-demo.ipynb",
+      "path": "stickyland-demo.ipynb",
+      "size": 3410,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2026-10-11T21:44:51.580839Z",
+  "format": "json",
+  "hash": null,
+  "hash_algorithm": null,
+  "last_modified": "2026-10-11T21:44:51.594784Z",
+  "mimetype": null,
+  "name": "",
+  "path": "",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

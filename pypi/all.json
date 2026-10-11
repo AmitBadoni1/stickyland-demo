@@ -1,0 +1,54 @@
+{
+  "ipython": {
+    "releases": {
+      "8.16.1": [
+        {
+          "comment_text": "",
+          "digests": {
+            "md5": "7b7c3d3851482be55c1098eda18f5b87",
+            "sha256": "0852469d4d579d9cd613c220af7bf0c9cc251813e12be647cb9d463939db9b1e"
+          },
+          "downloads": -1,
+          "filename": "ipython-8.16.1-py3-none-any.whl",
+          "has_sig": false,
+          "md5_digest": "7b7c3d3851482be55c1098eda18f5b87",
+          "packagetype": "bdist_wheel",
+          "python_version": "py3",
+          "requires_python": ">=3.9",
+          "size": 806964,
+          "upload_time": "2026-10-11T21:40:42.633285Z",
+          "upload_time_iso_8601": "2026-10-11T21:40:42.633285Z",
+          "url": "./ipython-8.16.1-py3-none-any.whl",
+          "yanked": false,
+          "yanked_reason": null
+        }
+      ]
+    }
+  },
+  "matplotlib-inline": {
+    "releases": {
+      "0.1.6": [
+        {
+          "comment_text": "",
+          "digests": {
+            "md5": "72d5ee639f7e3535fcfbcc7981614852",
+            "sha256": "f1f41aab5328aa5aaea9b16d083b128102f8712542f819fe7e6a420ff581b311"
+          },
+          "downloads": -1,
+          "filename": "matplotlib_inline-0.1.6-py3-none-any.whl",
+          "has_sig": false,
+          "md5_digest": "72d5ee639f7e3535fcfbcc7981614852",
+          "packagetype": "bdist_wheel",
+          "python_version": "py3",
+          "requires_python": ">=3.5",
+          "size": 9408,
+          "upload_time": "2026-10-11T21:44:10.217083Z",
+          "upload_time_iso_8601": "2026-10-11T21:44:10.217083Z",
+          "url": "./matplotlib_inline-0.1.6-py3-none-any.whl",
+          "yanked": false,
+          "yanked_reason": null
+        }
+      ]
+    }
+  }
+}
