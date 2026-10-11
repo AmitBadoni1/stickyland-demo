@@ -63,5 +63,19 @@ if set(piplite_index.get("matplotlib-inline", {}).get("releases", {})) != {
 }:
     raise SystemExit("The browser runtime is not pinned to matplotlib-inline 0.1.6")
 
-require(OUTPUT / "files" / "stickyland-demo.ipynb")
+activity_notebook = json.loads(
+    require(OUTPUT / "files" / "stickyland-demo.ipynb").read_text(encoding="utf-8")
+)
+if len(activity_notebook.get("cells", [])) < 30:
+    raise SystemExit("The classroom activity notebook is unexpectedly short")
+
+activity_tags = {
+    tag
+    for cell in activity_notebook["cells"]
+    for tag in cell.get("metadata", {}).get("tags", [])
+}
+for required_tag in ("activity-control", "activity-slow-audit", "activity-answer", "validator"):
+    if required_tag not in activity_tags:
+        raise SystemExit(f"The classroom activity is missing tag: {required_tag}")
+
 print("Generated site is internally consistent.")
