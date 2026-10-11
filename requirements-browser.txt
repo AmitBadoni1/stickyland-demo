@@ -1,0 +1,4 @@
+# The Lab 3-era Pyodide kernel calls an IPython API removed in newer releases.
+# JupyterLite indexes this wheel and installs it before falling back to PyPI.
+ipython==8.16.1
+matplotlib-inline==0.1.6

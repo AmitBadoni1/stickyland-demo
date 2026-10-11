@@ -6,8 +6,11 @@ node_modules/
 .ipynb_checkpoints
 *.tsbuildinfo
 jupyterlab_stickyland/labextension
-yarn.lock
 package-lock.json
+.venv/
+_output/
+.jupyterlite.doit.db
+pypi/
 *.swp
 
 # Created by https://www.gitignore.io/api/python

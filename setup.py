@@ -28,7 +28,7 @@ data_files_spec = [
     ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),
 ]
 
-long_description = (HERE / "README.md").read_text()
+long_description = (HERE / "README.md").read_text(encoding="utf-8")
 
 # Get the package info from package.json
 pkg_json = json.loads((HERE / "package.json").read_bytes())

@@ -1,0 +1,8 @@
+{
+  "LiteBuildConfig": {
+    "apps": ["lab"],
+    "contents": ["examples"],
+    "output_dir": "_output",
+    "no_sourcemaps": true
+  }
+}

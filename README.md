@@ -2,9 +2,9 @@
 
 <!-- [![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/c3438b4c49d89e4c367f581520ddd4cf8dac0f41/lite-badge-launch-small.svg)](https://xiaohk.github.io/stickyland/) -->
 
-[![Github Actions Status](https://github.com/xiaohk/stickyland/workflows/Build/badge.svg)](https://github.com/xiaohk/stickyland/actions/workflows/build.yml)
+[![Github Actions Status](https://github.com/AmitBadoni1/stickyland-demo/actions/workflows/build.yml/badge.svg)](https://github.com/AmitBadoni1/stickyland-demo/actions/workflows/build.yml)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xiaohk/stickyland/master?urlpath=lab/tree/examples/example-adult.ipynb)
-[![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/a7fca1d0a2d62c2b49f60c0217dffbd0fe404471/lite-badge-launch-small.svg)](https://xiaohk.github.io/stickyland/)
+[![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/a7fca1d0a2d62c2b49f60c0217dffbd0fe404471/lite-badge-launch-small.svg)](https://amitbadoni1.github.io/stickyland-demo/)
 [![pypi](https://img.shields.io/pypi/v/jupyterlab-stickyland?color=blue)](https://pypi.python.org/pypi/jupyterlab-stickyland)
 [![license](https://img.shields.io/badge/License-BSD--3-orange)](https://github.com/xiaohk/stickyland/blob/master/LICENSE)
 [![arxiv badge](https://img.shields.io/badge/arXiv-2202.11086-red)](https://arxiv.org/abs/2202.11086)
@@ -30,7 +30,7 @@ You can try StickyLand directly in your browser without installing anything:
 
 |                                                                                             Fast loading                                                                                             |                                                                 Full functionality                                                                  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
-| [![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/a7fca1d0a2d62c2b49f60c0217dffbd0fe404471/lite-badge-launch-small.svg)](https://xiaohk.github.io/stickyland/) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xiaohk/stickyland/master?urlpath=lab/tree/examples/example-adult.ipynb) |
+| [![Lite](https://gist.githubusercontent.com/xiaohk/9b9f7c8fa162b2c3bc3251a5c9a799b2/raw/a7fca1d0a2d62c2b49f60c0217dffbd0fe404471/lite-badge-launch-small.svg)](https://amitbadoni1.github.io/stickyland-demo/) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/xiaohk/stickyland/master?urlpath=lab/tree/examples/example-adult.ipynb) |
 
 ## Install
 
@@ -76,6 +76,30 @@ input field to further specify the range within the feature to diagnose, <b>(E)<
 criteria, <b>(F)</b> auto-run <a href="https://github.com/interpretml/interpret/">visualization</a> explaining how the ML model makes decision on these samples, <b>(G)</b> <a href="https://github.com/interpretml/gam-changer/">interactive tool</a> allowing
 the ML engineer to fix the ML model by editing its parameters based on their error analysis.</td></tr>
 </table>
+
+## Browser demo build and deployment
+
+The GitHub Pages demo is built from source instead of committing generated JupyterLite assets. Its compatibility set is intentionally fixed to JupyterLab 3.5.3, JupyterLite 0.1.3, the Pyodide kernel 0.1.3 (Pyodide 0.24.1), IPython 8.16.1, matplotlib-inline 0.1.6, and Webpack 5.75.0. These versions belong to the same JupyterLab 3 generation and avoid the Lab 4-alpha extension mismatch, the unsupported `rpds-py` dependency pulled into the former Pyodide 0.19 deployment, and newer IPython/Matplotlib adapter APIs that the Lab 3-era kernel does not implement.
+
+To reproduce the site locally with Python 3.10 and Node.js 18:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows PowerShell: .venv\\Scripts\\Activate.ps1
+python -m pip install -r requirements-build.txt
+python -m pip download --no-deps --only-binary=:all: --dest pypi -r requirements-browser.txt
+jlpm install --frozen-lockfile
+jlpm run build:prod
+python -m build --wheel --no-isolation
+python -m pip install --force-reinstall --no-deps dist/jupyterlab_stickyland-*.whl
+jupyter lite build --config jupyter_lite_config.json
+python scripts/validate_site.py
+jupyter lite serve --config jupyter_lite_config.json
+```
+
+Open `http://127.0.0.1:8000/lab/index.html` and choose `stickyland-demo.ipynb`. Pushing `master` runs [the build workflow](.github/workflows/build.yml), validates the generated extension set, and publishes `_output` to the existing `gh-pages` branch.
+
+The original notebooks remain available. Their specialized research integrations (notably InterpretML/GAM Changer) are not shipped in Pyodide 0.24 because they include packages and browser integrations outside Pyodide's WebAssembly package set. The included `stickyland-demo.ipynb` is the browser-native alternative: it exercises Python, NumPy, Pandas, Matplotlib, synchronized sticky cells, auto-run, and floating dashboard layout without a server or installation.
 
 ## Development
 
